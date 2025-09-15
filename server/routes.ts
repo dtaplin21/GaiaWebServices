@@ -6,13 +6,13 @@ import { insertContactSchema, insertAboutSchema, insertProjectSchema } from "@sh
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 import Stripe from "stripe";
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+// Initialize Stripe only if API key is available
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2025-08-27.basil",
+  });
 }
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-08-27.basil",
-});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -161,6 +161,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Stripe payment routes
   app.post("/api/create-payment-intent", async (req, res) => {
+    if (!stripe) {
+      return res.status(503).json({ error: "Payment service not configured" });
+    }
+    
     try {
       const { amount, customerName, customerEmail, pageCount, includeBackend, description } = req.body;
       
@@ -201,6 +205,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Webhook to handle payment status updates
   app.post("/api/stripe-webhook", async (req, res) => {
+    if (!stripe) {
+      return res.status(503).json({ error: "Payment service not configured" });
+    }
+    
     const sig = req.headers['stripe-signature'];
     let event;
 
