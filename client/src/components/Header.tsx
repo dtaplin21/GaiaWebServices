@@ -43,6 +43,13 @@ export default function Header({ onOpenPaymentModal, onScrollToSection }: Header
             >
               About
             </button>
+            <button 
+              onClick={() => onScrollToSection('contact')}
+              className="text-sm font-medium hover:text-primary transition-colors"
+              data-testid="nav-contact"
+            >
+              Contact
+            </button>
             <Button 
               onClick={onOpenPaymentModal}
               className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
@@ -98,6 +105,16 @@ export default function Header({ onOpenPaymentModal, onScrollToSection }: Header
                 data-testid="nav-mobile-about"
               >
                 About
+              </button>
+              <button 
+                onClick={() => {
+                  onScrollToSection('contact');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-sm font-medium hover:text-primary transition-colors text-left"
+                data-testid="nav-mobile-contact"
+              >
+                Contact
               </button>
               <Button 
                 onClick={() => {

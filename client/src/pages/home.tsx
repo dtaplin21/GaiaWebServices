@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import About from "@/components/About";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import PaymentModal from "@/components/PaymentModal";
 import { useState } from "react";
@@ -31,6 +32,7 @@ export default function Home() {
       />
       <Portfolio />
       <About />
+      <Contact onOpenPaymentModal={() => setIsPaymentModalOpen(true)} />
       <Footer 
         onOpenPaymentModal={() => setIsPaymentModalOpen(true)}
         onScrollToSection={scrollToSection}
