@@ -4,7 +4,7 @@ const projectsData = [
     id: "the-grand-gaia",
     title: "The Grand Gaia",
     description: "A comprehensive web platform showcasing luxury hospitality and premium services with elegant design and seamless user experience.",
-    imageUrl: "/assets/BatanaOil.png",
+    imageUrl: "/BatanaOil.png",
     liveUrl: "https://www.thegrandgaia.com/",
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     featured: true
@@ -13,7 +13,7 @@ const projectsData = [
     id: "the-unnamed-farm", 
     title: "The Unnamed Farm",
     description: "An agricultural and farming services website featuring modern design and comprehensive information about farm operations and services.",
-    imageUrl: "/assets/UnnamedFarm.png",
+    imageUrl: "/UnnamedFarm.png",
     liveUrl: "https://www.theunnamedfarm.com/",
     technologies: ["Next.js", "Node.js", "PostgreSQL"],
     featured: true
