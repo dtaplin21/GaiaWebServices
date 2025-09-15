@@ -1,4 +1,24 @@
-const { projectsData } = require('../shared/projects-data.ts');
+// Import projects data directly
+const projectsData = [
+  {
+    id: "the-grand-gaia",
+    title: "The Grand Gaia",
+    description: "A comprehensive web platform showcasing luxury hospitality and premium services with elegant design and seamless user experience.",
+    imageUrl: "/src/assets/BatanaOil.png",
+    liveUrl: "https://www.thegrandgaia.com/",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    featured: true
+  },
+  {
+    id: "the-unnamed-farm", 
+    title: "The Unnamed Farm",
+    description: "An agricultural and farming services website featuring modern design and comprehensive information about farm operations and services.",
+    imageUrl: "/src/assets/UnnamedFarm.png",
+    liveUrl: "https://www.theunnamedfarm.com/",
+    technologies: ["Next.js", "Node.js", "PostgreSQL"],
+    featured: true
+  }
+];
 
 export default function handler(req, res) {
   // CORS headers
