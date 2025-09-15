@@ -26,10 +26,6 @@
       "destination": "/api/about.js"
     },
     {
-      "source": "/(.*\\.(png|jpg|jpeg|gif|svg|ico|webp))",
-      "destination": "/public/$1"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
