@@ -1,8 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { sendEmail } from "./sendgrid";
-import { insertContactSchema, insertAboutSchema, insertProjectSchema } from "@shared/schema";
+import { insertAboutSchema, insertProjectSchema } from "@shared/schema";
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 import Stripe from "stripe";
 
@@ -37,47 +36,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Contact form submission
-  app.post("/api/contact", async (req, res) => {
-    try {
-      const validatedData = insertContactSchema.parse(req.body);
-      
-      // Save to storage
-      const submission = await storage.createContactSubmission(validatedData);
-      
-      // Send email notification
-      const emailSent = await sendEmail({
-        to: "dtaplin21@gmail.com",
-        from: process.env.SENDGRID_FROM_EMAIL || "noreply@webcraft.com",
-        subject: `New Contact Form Submission from ${validatedData.name}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${validatedData.name}</p>
-          <p><strong>Email:</strong> ${validatedData.email}</p>
-          <p><strong>Message:</strong></p>
-          <p>${validatedData.message.replace(/\n/g, '<br>')}</p>
-        `,
-        text: `
-          New Contact Form Submission
-          
-          Name: ${validatedData.name}
-          Email: ${validatedData.email}
-          
-          Message:
-          ${validatedData.message}
-        `
-      });
-
-      if (!emailSent) {
-        console.error("Failed to send email notification");
-      }
-
-      res.json({ success: true, id: submission.id });
-    } catch (error) {
-      console.error("Error processing contact form:", error);
-      res.status(400).json({ error: "Invalid form data" });
-    }
-  });
 
   // About info routes
   app.get("/api/about", async (req, res) => {
@@ -223,7 +181,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
       
       // Update payment status in storage
-      const storedIntents = await storage.getAllContactSubmissions(); // This would need a proper query method
+      // TODO: Add proper method to update payment intent status
       // Update the corresponding payment intent status
       console.log("Payment succeeded:", paymentIntent.id);
     }

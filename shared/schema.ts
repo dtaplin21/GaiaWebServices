@@ -19,13 +19,6 @@ export const projects = pgTable("projects", {
   featured: boolean("featured").default(false),
 });
 
-export const contactSubmissions = pgTable("contact_submissions", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  message: text("message").notNull(),
-  createdAt: text("created_at").default(sql`now()`),
-});
 
 export const aboutInfo = pgTable("about_info", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -55,10 +48,6 @@ export const insertProjectSchema = createInsertSchema(projects).omit({
   id: true,
 });
 
-export const insertContactSchema = createInsertSchema(contactSubmissions).omit({
-  id: true,
-  createdAt: true,
-});
 
 export const insertAboutSchema = createInsertSchema(aboutInfo).omit({
   id: true,
@@ -73,8 +62,6 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type Project = typeof projects.$inferSelect;
 export type InsertProject = z.infer<typeof insertProjectSchema>;
-export type ContactSubmission = typeof contactSubmissions.$inferSelect;
-export type InsertContact = z.infer<typeof insertContactSchema>;
 export type AboutInfo = typeof aboutInfo.$inferSelect;
 export type InsertAbout = z.infer<typeof insertAboutSchema>;
 export type PaymentIntent = typeof paymentIntents.$inferSelect;

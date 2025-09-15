@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Project, type InsertProject, type ContactSubmission, type InsertContact, type AboutInfo, type InsertAbout, type PaymentIntent, type InsertPaymentIntent } from "@shared/schema";
+import { type User, type InsertUser, type Project, type InsertProject, type AboutInfo, type InsertAbout, type PaymentIntent, type InsertPaymentIntent } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -14,9 +14,6 @@ export interface IStorage {
   updateProject(id: string, project: Partial<InsertProject>): Promise<Project | undefined>;
   deleteProject(id: string): Promise<boolean>;
   
-  // Contact submissions
-  createContactSubmission(submission: InsertContact): Promise<ContactSubmission>;
-  getAllContactSubmissions(): Promise<ContactSubmission[]>;
   
   // About info
   getAboutInfo(): Promise<AboutInfo | undefined>;
@@ -31,14 +28,12 @@ export interface IStorage {
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private projects: Map<string, Project>;
-  private contactSubmissions: Map<string, ContactSubmission>;
   private aboutInfo: AboutInfo | undefined;
   private paymentIntents: Map<string, PaymentIntent>;
 
   constructor() {
     this.users = new Map();
     this.projects = new Map();
-    this.contactSubmissions = new Map();
     this.paymentIntents = new Map();
     this.initializeProjects();
   }
@@ -159,20 +154,6 @@ export class MemStorage implements IStorage {
     return this.projects.delete(id);
   }
 
-  async createContactSubmission(submission: InsertContact): Promise<ContactSubmission> {
-    const id = randomUUID();
-    const newSubmission: ContactSubmission = { 
-      ...submission, 
-      id, 
-      createdAt: new Date().toISOString() 
-    };
-    this.contactSubmissions.set(id, newSubmission);
-    return newSubmission;
-  }
-
-  async getAllContactSubmissions(): Promise<ContactSubmission[]> {
-    return Array.from(this.contactSubmissions.values());
-  }
 
   async getAboutInfo(): Promise<AboutInfo | undefined> {
     return this.aboutInfo;
