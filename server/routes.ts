@@ -15,10 +15,24 @@ if (process.env.STRIPE_SECRET_KEY) {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
+  // Add CORS headers for all API routes
+  app.use('/api', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+    } else {
+      next();
+    }
+  });
+  
   // Portfolio routes
   app.get("/api/projects", async (req, res) => {
     try {
       const projects = await storage.getAllProjects();
+      // Add caching headers for better performance
+      res.set('Cache-Control', 'public, max-age=300'); // 5 minutes cache
       res.json(projects);
     } catch (error) {
       console.error("Error fetching projects:", error);
@@ -29,6 +43,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/projects/featured", async (req, res) => {
     try {
       const projects = await storage.getFeaturedProjects();
+      // Add caching headers for better performance
+      res.set('Cache-Control', 'public, max-age=300'); // 5 minutes cache
       res.json(projects);
     } catch (error) {
       console.error("Error fetching featured projects:", error);
