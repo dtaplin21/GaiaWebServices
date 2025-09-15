@@ -85,15 +85,6 @@ export default function Footer({ onOpenPaymentModal, onScrollToSection }: Footer
                 </li>
                 <li>
                   <button 
-                    onClick={() => onScrollToSection('contact')}
-                    className="hover:text-foreground transition-colors text-left"
-                    data-testid="link-footer-contact"
-                  >
-                    Contact
-                  </button>
-                </li>
-                <li>
-                  <button 
                     onClick={onOpenPaymentModal}
                     className="hover:text-foreground transition-colors text-left"
                     data-testid="link-footer-pricing"
