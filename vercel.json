@@ -26,6 +26,10 @@
       "destination": "/api/about.js"
     },
     {
+      "source": "/assets/(.*)",
+      "destination": "/public/assets/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
