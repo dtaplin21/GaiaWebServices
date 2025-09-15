@@ -5,18 +5,29 @@
   "installCommand": "npm install",
   "framework": null,
   "functions": {
-    "server/index.ts": {
+    "api/projects.js": {
+      "includeFiles": "shared/**"
+    },
+    "api/about.js": {
       "includeFiles": "shared/**"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server/index.ts"
+      "source": "/api/projects",
+      "destination": "/api/projects.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/api/projects/featured",
+      "destination": "/api/projects.js"
+    },
+    {
+      "source": "/api/about",
+      "destination": "/api/about.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
