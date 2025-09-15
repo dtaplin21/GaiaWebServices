@@ -16,7 +16,7 @@ export default function Footer({ onOpenPaymentModal, onScrollToSection }: Footer
                 <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
                   <Code className="text-primary-foreground" size={16} />
                 </div>
-                <span className="font-bold text-xl">WebCraft</span>
+                <span className="font-bold text-xl">Gaia Web Services</span>
               </div>
               <p className="text-muted-foreground mb-4 max-w-md">
                 Professional web design and development services that help your business thrive in the digital world.
@@ -106,7 +106,7 @@ export default function Footer({ onOpenPaymentModal, onScrollToSection }: Footer
           </div>
           
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 WebCraft. All rights reserved.</p>
+            <p>&copy; 2024 Gaia Web Services. All rights reserved.</p>
           </div>
         </div>
       </div>

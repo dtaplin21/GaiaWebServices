@@ -18,7 +18,7 @@ export default function Header({ onOpenPaymentModal, onScrollToSection }: Header
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <Code className="text-primary-foreground text-sm" size={16} />
             </div>
-            <span className="font-bold text-xl">WebCraft</span>
+            <span className="font-bold text-xl">Gaia Web Services</span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
