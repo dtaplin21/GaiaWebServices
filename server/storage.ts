@@ -137,7 +137,11 @@ export class MemStorage implements IStorage {
 
   async createProject(project: InsertProject): Promise<Project> {
     const id = randomUUID();
-    const newProject: Project = { ...project, id };
+    const newProject: Project = { 
+      ...project, 
+      id,
+      featured: project.featured ?? null
+    };
     this.projects.set(id, newProject);
     return newProject;
   }
@@ -176,10 +180,18 @@ export class MemStorage implements IStorage {
 
   async createOrUpdateAboutInfo(info: InsertAbout): Promise<AboutInfo> {
     if (this.aboutInfo) {
-      this.aboutInfo = { ...this.aboutInfo, ...info };
+      this.aboutInfo = { 
+        ...this.aboutInfo, 
+        ...info,
+        profileImageUrl: info.profileImageUrl ?? this.aboutInfo.profileImageUrl
+      };
     } else {
       const id = randomUUID();
-      this.aboutInfo = { ...info, id };
+      this.aboutInfo = { 
+        ...info, 
+        id,
+        profileImageUrl: info.profileImageUrl ?? null
+      };
     }
     return this.aboutInfo;
   }
@@ -189,7 +201,9 @@ export class MemStorage implements IStorage {
     const newIntent: PaymentIntent = { 
       ...intent, 
       id, 
-      createdAt: new Date().toISOString() 
+      createdAt: new Date().toISOString(),
+      description: intent.description ?? null,
+      includeBackend: intent.includeBackend ?? null
     };
     this.paymentIntents.set(id, newIntent);
     return newIntent;
