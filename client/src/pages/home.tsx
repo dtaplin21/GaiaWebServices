@@ -5,10 +5,12 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import PaymentModal from "@/components/PaymentModal";
+import ReviewModal from "@/components/ReviewModal";
 import { useState } from "react";
 
 export default function Home() {
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -27,8 +29,7 @@ export default function Home() {
         onScrollToSection={scrollToSection}
       />
       <Hero 
-        onOpenPaymentModal={() => setIsPaymentModalOpen(true)}
-        onScrollToSection={scrollToSection}
+        onOpenReviewModal={() => setIsReviewModalOpen(true)}
       />
       <Portfolio />
       <About />
@@ -40,6 +41,10 @@ export default function Home() {
       <PaymentModal 
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}
+      />
+      <ReviewModal 
+        isOpen={isReviewModalOpen}
+        onClose={() => setIsReviewModalOpen(false)}
       />
     </div>
   );

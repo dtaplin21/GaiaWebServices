@@ -39,6 +39,15 @@ export const paymentIntents = pgTable("payment_intents", {
   createdAt: text("created_at").default(sql`now()`),
 });
 
+export const reviews = pgTable("reviews", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  rating: integer("rating").notNull(), // 1-5 stars
+  comment: text("comment").notNull(),
+  approved: boolean("approved").default(false),
+  createdAt: text("created_at").default(sql`now()`),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -58,6 +67,11 @@ export const insertPaymentIntentSchema = createInsertSchema(paymentIntents).omit
   createdAt: true,
 });
 
+export const insertReviewSchema = createInsertSchema(reviews).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type Project = typeof projects.$inferSelect;
@@ -66,3 +80,5 @@ export type AboutInfo = typeof aboutInfo.$inferSelect;
 export type InsertAbout = z.infer<typeof insertAboutSchema>;
 export type PaymentIntent = typeof paymentIntents.$inferSelect;
 export type InsertPaymentIntent = z.infer<typeof insertPaymentIntentSchema>;
+export type Review = typeof reviews.$inferSelect;
+export type InsertReview = z.infer<typeof insertReviewSchema>;

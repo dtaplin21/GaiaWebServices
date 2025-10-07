@@ -15,7 +15,9 @@ import { apiRequest } from "@/lib/queryClient";
 import { CreditCard } from "lucide-react";
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || '');
+const stripePromise = import.meta.env.VITE_STRIPE_PUBLIC_KEY 
+  ? loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY)
+  : null;
 
 const paymentFormSchema = z.object({
   pageCount: z.string().min(1, "Please select number of pages"),

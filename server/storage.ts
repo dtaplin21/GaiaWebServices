@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Project, type InsertProject, type AboutInfo, type InsertAbout, type PaymentIntent, type InsertPaymentIntent } from "@shared/schema";
+import { type User, type InsertUser, type Project, type InsertProject, type AboutInfo, type InsertAbout, type PaymentIntent, type InsertPaymentIntent, type Review, type InsertReview } from "@shared/schema";
 import { projectsData } from "@shared/projects-data";
 import { randomUUID } from "crypto";
 
@@ -24,6 +24,13 @@ export interface IStorage {
   createPaymentIntent(intent: InsertPaymentIntent): Promise<PaymentIntent>;
   getPaymentIntent(id: string): Promise<PaymentIntent | undefined>;
   updatePaymentIntentStatus(id: string, status: string): Promise<PaymentIntent | undefined>;
+  
+  // Reviews
+  getAllReviews(): Promise<Review[]>;
+  getApprovedReviews(): Promise<Review[]>;
+  getFeaturedReview(): Promise<Review | undefined>;
+  createReview(review: InsertReview): Promise<Review>;
+  updateReviewApproval(id: string, approved: boolean): Promise<Review | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -31,12 +38,15 @@ export class MemStorage implements IStorage {
   private projects: Map<string, Project>;
   private aboutInfo: AboutInfo | undefined;
   private paymentIntents: Map<string, PaymentIntent>;
+  private reviews: Map<string, Review>;
 
   constructor() {
     this.users = new Map();
     this.projects = new Map();
     this.paymentIntents = new Map();
+    this.reviews = new Map();
     this.initializeProjects();
+    this.initializeReviews();
   }
 
   private initializeProjects() {
@@ -44,6 +54,40 @@ export class MemStorage implements IStorage {
     // To add new projects, edit shared/projects-data.ts
     projectsData.forEach(project => {
       this.projects.set(project.id, project);
+    });
+  }
+
+  private initializeReviews() {
+    // Add some sample reviews for testing
+    const sampleReviews: Review[] = [
+      {
+        id: "review-1",
+        name: "Sarah Johnson",
+        rating: 5,
+        comment: "Absolutely amazing work! The website exceeded all my expectations. Professional, fast, and exactly what I needed for my business.",
+        approved: true,
+        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days ago
+      },
+      {
+        id: "review-2", 
+        name: "Mike Chen",
+        rating: 5,
+        comment: "Outstanding service from start to finish. The team was responsive, creative, and delivered a beautiful website that perfectly represents my brand.",
+        approved: true,
+        createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString() // 14 days ago
+      },
+      {
+        id: "review-3",
+        name: "Emily Rodriguez", 
+        rating: 4,
+        comment: "Great experience working with this team. They understood my vision and brought it to life. Highly recommend!",
+        approved: true,
+        createdAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString() // 21 days ago
+      }
+    ];
+
+    sampleReviews.forEach(review => {
+      this.reviews.set(review.id, review);
     });
   }
 
@@ -146,6 +190,44 @@ export class MemStorage implements IStorage {
     
     const updated = { ...existing, status };
     this.paymentIntents.set(id, updated);
+    return updated;
+  }
+
+  async getAllReviews(): Promise<Review[]> {
+    return Array.from(this.reviews.values()).sort((a, b) => 
+      new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()
+    );
+  }
+
+  async getApprovedReviews(): Promise<Review[]> {
+    return Array.from(this.reviews.values())
+      .filter(review => review.approved)
+      .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
+  }
+
+  async getFeaturedReview(): Promise<Review | undefined> {
+    const approvedReviews = await this.getApprovedReviews();
+    return approvedReviews[0]; // Return the most recent approved review
+  }
+
+  async createReview(review: InsertReview): Promise<Review> {
+    const id = randomUUID();
+    const newReview: Review = {
+      ...review,
+      id,
+      createdAt: new Date().toISOString(),
+      approved: true // Auto-approve reviews for now
+    };
+    this.reviews.set(id, newReview);
+    return newReview;
+  }
+
+  async updateReviewApproval(id: string, approved: boolean): Promise<Review | undefined> {
+    const existing = this.reviews.get(id);
+    if (!existing) return undefined;
+    
+    const updated = { ...existing, approved };
+    this.reviews.set(id, updated);
     return updated;
   }
 }

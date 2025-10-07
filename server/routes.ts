@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertAboutSchema, insertProjectSchema } from "@shared/schema";
+import { insertAboutSchema, insertProjectSchema, insertReviewSchema } from "@shared/schema";
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 import Stripe from "stripe";
 
@@ -79,6 +79,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating about info:", error);
       res.status(400).json({ error: "Invalid data" });
+    }
+  });
+
+  // Review routes
+  app.get("/api/reviews", async (req, res) => {
+    try {
+      const reviews = await storage.getApprovedReviews();
+      res.set('Cache-Control', 'public, max-age=300'); // 5 minutes cache
+      res.json(reviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      res.status(500).json({ error: "Failed to fetch reviews" });
+    }
+  });
+
+  app.get("/api/reviews/featured", async (req, res) => {
+    try {
+      const featuredReview = await storage.getFeaturedReview();
+      res.set('Cache-Control', 'public, max-age=300'); // 5 minutes cache
+      res.json(featuredReview);
+    } catch (error) {
+      console.error("Error fetching featured review:", error);
+      res.status(500).json({ error: "Failed to fetch featured review" });
+    }
+  });
+
+  app.post("/api/reviews", async (req, res) => {
+    try {
+      const validatedData = insertReviewSchema.parse(req.body);
+      const review = await storage.createReview(validatedData);
+      res.status(201).json(review);
+    } catch (error) {
+      console.error("Error creating review:", error);
+      res.status(400).json({ error: "Invalid review data" });
+    }
+  });
+
+  // Debug endpoint to get all reviews (including unapproved)
+  app.get("/api/reviews/all", async (req, res) => {
+    try {
+      const reviews = await storage.getAllReviews();
+      res.json(reviews);
+    } catch (error) {
+      console.error("Error fetching all reviews:", error);
+      res.status(500).json({ error: "Failed to fetch all reviews" });
     }
   });
 

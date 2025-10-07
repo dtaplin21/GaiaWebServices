@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
+import ReviewSection from "@/components/ReviewSection";
 
 interface HeroProps {
-  onOpenPaymentModal: () => void;
-  onScrollToSection: (sectionId: string) => void;
+  onOpenReviewModal: () => void;
 }
 
-export default function Hero({ onOpenPaymentModal, onScrollToSection }: HeroProps) {
+export default function Hero({ onOpenReviewModal }: HeroProps) {
   return (
     <section id="home" className="relative py-20 lg:py-32 hero-pattern">
       <div className="container mx-auto px-4 lg:px-8">
@@ -16,23 +15,7 @@ export default function Hero({ onOpenPaymentModal, onScrollToSection }: HeroProp
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Professional web design and development services that help your business stand out online. From landing pages to full-stack applications.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => onScrollToSection('portfolio')}
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              data-testid="button-view-work"
-            >
-              View My Work
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={onOpenPaymentModal}
-              className="border border-border px-8 py-3 rounded-lg font-semibold hover:bg-secondary transition-colors"
-              data-testid="button-start-project"
-            >
-              Start Project
-            </Button>
-          </div>
+          <ReviewSection onOpenReviewModal={onOpenReviewModal} />
         </div>
       </div>
     </section>
