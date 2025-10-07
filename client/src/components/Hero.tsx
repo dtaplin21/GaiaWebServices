@@ -10,10 +10,10 @@ export default function Hero({ onOpenReviewModal }: HeroProps) {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-            Crafting <span className="gradient-text">Beautiful</span> Web Experiences
+            Crafting <span className="gradient-text">AI-Powered</span> Web Experiences
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Professional web design and development services that help your business stand out online. From landing pages to full-stack applications.
+            Professional web design and development services enhanced with artificial intelligence. From intelligent automation to AI-driven user experiences that help your business stand out online.
           </p>
           <ReviewSection onOpenReviewModal={onOpenReviewModal} />
         </div>

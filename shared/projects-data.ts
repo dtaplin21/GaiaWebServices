@@ -45,9 +45,9 @@ export const projectsData: Project[] = [
     id: "ai-quality-control",
     title: "(AI powered) Quality Control Quality Assurance",
     description: "An intelligent quality assurance platform leveraging artificial intelligence to automate testing, monitor production quality, and provide real-time insights for enhanced operational efficiency.",
-    imageUrl: "/src/assets/AIQualityControl.png",
+    imageUrl: "/src/assets/GeoSynthQCPro.png",
     liveUrl: "https://dellsystemmanager.vercel.app/", // Ready for your URL
-    technologies: ["Python", "TensorFlow", "React", "Node.js", "MongoDB", "Docker"],
+    technologies: ["Python", "TensorFlow", "React", "Node.js", "supabase", "vercel"],
     featured: true
   }
 ];
