@@ -40,5 +40,14 @@ export const projectsData: Project[] = [
     liveUrl: "https://www.theunnamedfarm.com/",
     technologies: ["Next.js", "Node.js", "PostgreSQL"],
     featured: true
+  },
+  {
+    id: "ai-quality-control",
+    title: "(AI powered) Quality Control Quality Assurance",
+    description: "An intelligent quality assurance platform leveraging artificial intelligence to automate testing, monitor production quality, and provide real-time insights for enhanced operational efficiency.",
+    imageUrl: "/src/assets/AIQualityControl.png",
+    liveUrl: "https://dellsystemmanager.vercel.app/", // Ready for your URL
+    technologies: ["Python", "TensorFlow", "React", "Node.js", "MongoDB", "Docker"],
+    featured: true
   }
 ];
