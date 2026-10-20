@@ -1,130 +1,82 @@
 import { useState } from "react";
-import { Code } from "lucide-react";
+import { Menu, Network, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
-  onOpenPaymentModal: () => void;
   onScrollToSection: (sectionId: string) => void;
 }
 
-export default function Header({ onOpenPaymentModal, onScrollToSection }: HeaderProps) {
+const navigation = [
+  { label: "Credentials", id: "credentials" },
+  { label: "Packages", id: "packages" },
+  { label: "Approach", id: "approach" },
+];
+
+export default function Header({ onScrollToSection }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const navigate = (sectionId: string) => {
+    onScrollToSection(sectionId);
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <Code className="text-primary-foreground text-sm" size={16} />
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/90 text-white backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          <button onClick={() => navigate("home")} className="flex items-center gap-3 text-left">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/10">
+              <Network className="text-cyan-300" size={19} />
             </div>
-            <span className="font-bold text-xl">Gaia Web Services</span>
-          </div>
+            <div>
+              <span className="block text-sm font-semibold tracking-[0.18em]">GAIA</span>
+              <span className="block text-[10px] uppercase tracking-[0.22em] text-slate-400">AI Strategy</span>
+            </div>
+          </button>
           
-          <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => onScrollToSection('home')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-              data-testid="nav-home"
+          <nav className="hidden items-center gap-8 md:flex">
+            {navigation.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => navigate(item.id)}
+                className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
+              >
+                {item.label}
+              </button>
+            ))}
+            <Button
+              onClick={() => navigate("contact")}
+              className="rounded-full bg-cyan-300 px-5 text-slate-950 hover:bg-cyan-200"
             >
-              Home
-            </button>
-            <button 
-              onClick={() => onScrollToSection('portfolio')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-              data-testid="nav-portfolio"
-            >
-              Portfolio
-            </button>
-            <button 
-              onClick={() => onScrollToSection('about')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-              data-testid="nav-about"
-            >
-              About
-            </button>
-            <button 
-              onClick={() => onScrollToSection('contact')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-              data-testid="nav-contact"
-            >
-              Contact
-            </button>
-            <Button 
-              onClick={onOpenPaymentModal}
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
-              data-testid="button-get-quote"
-            >
-              Get Quote
+              Book a strategy call
             </Button>
           </nav>
           
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="text-white hover:bg-white/10 hover:text-white md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            data-testid="button-mobile-menu"
+            aria-label="Toggle navigation"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </Button>
         </div>
         
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-border py-4">
-            <nav className="flex flex-col space-y-4">
-              <button 
-                onClick={() => {
-                  onScrollToSection('home');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="text-sm font-medium hover:text-primary transition-colors text-left"
-                data-testid="nav-mobile-home"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => {
-                  onScrollToSection('portfolio');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="text-sm font-medium hover:text-primary transition-colors text-left"
-                data-testid="nav-mobile-portfolio"
-              >
-                Portfolio
-              </button>
-              <button 
-                onClick={() => {
-                  onScrollToSection('about');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="text-sm font-medium hover:text-primary transition-colors text-left"
-                data-testid="nav-mobile-about"
-              >
-                About
-              </button>
-              <button 
-                onClick={() => {
-                  onScrollToSection('contact');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="text-sm font-medium hover:text-primary transition-colors text-left"
-                data-testid="nav-mobile-contact"
-              >
-                Contact
-              </button>
-              <Button 
-                onClick={() => {
-                  onOpenPaymentModal();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium w-fit"
-                data-testid="button-mobile-get-quote"
-              >
-                Get Quote
+          <div className="border-t border-white/10 py-5 md:hidden">
+            <nav className="flex flex-col gap-4">
+              {navigation.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => navigate(item.id)}
+                  className="text-left text-sm font-medium text-slate-300"
+                >
+                  {item.label}
+                </button>
+              ))}
+              <Button onClick={() => navigate("contact")} className="w-full rounded-full bg-cyan-300 text-slate-950">
+                Book a strategy call
               </Button>
             </nav>
           </div>

@@ -30,7 +30,7 @@ export const projectsData: Project[] = [
     imageUrl: "/src/assets/BatanaOil.png",
     liveUrl: "https://www.thegrandgaia.com/",
     technologies: ["React", "TypeScript", "Tailwind CSS"],
-    featured: true
+    featured: false
   },
   {
     id: "the-unnamed-farm", 
@@ -39,15 +39,15 @@ export const projectsData: Project[] = [
     imageUrl: "/src/assets/UnnamedFarm.png",
     liveUrl: "https://www.theunnamedfarm.com/",
     technologies: ["Next.js", "Node.js", "PostgreSQL"],
-    featured: true
+    featured: false
   },
   {
     id: "ai-quality-control",
-    title: "(AI powered) Quality Control Quality Assurance",
-    description: "An intelligent quality assurance platform leveraging artificial intelligence to automate testing, monitor production quality, and provide real-time insights for enhanced operational efficiency.",
+    title: "AI-Powered Quality Control & Assurance",
+    description: "A custom AI automation system that streamlines quality assurance, automates testing, monitors production quality, and delivers real-time operational insights.",
     imageUrl: "/src/assets/GeoSynthQCPro.png",
     liveUrl: "https://dellsystemmanager.vercel.app/", // Ready for your URL
-    technologies: ["Python", "TensorFlow", "React", "Node.js", "supabase", "vercel"],
-    featured: true
+    technologies: ["AI Automation", "Python", "TensorFlow", "React", "Node.js"],
+    featured: false
   }
 ];
