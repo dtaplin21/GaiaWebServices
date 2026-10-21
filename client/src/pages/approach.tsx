@@ -18,8 +18,8 @@ export default function ApproachPage() {
       return;
     }
 
-    if (sectionId === "packages") {
-      window.location.href = "/packages";
+    if (sectionId === "packages" || sectionId === "platforms") {
+      window.location.href = `/${sectionId}`;
       return;
     }
 

@@ -75,11 +75,11 @@ export default function Footer({ onScrollToSection }: FooterProps) {
                 </li>
                 <li>
                   <button 
-                    onClick={() => onScrollToSection('credentials')}
+                    onClick={() => onScrollToSection('platforms')}
                     className="hover:text-foreground transition-colors text-left"
                     data-testid="link-footer-about"
                   >
-                    Credentials
+                    Custom Platforms
                   </button>
                 </li>
                 <li>

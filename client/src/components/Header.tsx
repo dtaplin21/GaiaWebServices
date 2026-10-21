@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 const navigation = [
-  { label: "Credentials", id: "credentials" },
+  { label: "Custom Platforms", id: "platforms" },
   { label: "Packages", id: "packages" },
   { label: "Approach", id: "approach" },
 ];

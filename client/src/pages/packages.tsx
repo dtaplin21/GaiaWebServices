@@ -22,8 +22,8 @@ export default function PackagesPage() {
       return;
     }
 
-    if (sectionId === "approach") {
-      window.location.href = "/approach";
+    if (sectionId === "approach" || sectionId === "platforms") {
+      window.location.href = `/${sectionId}`;
       return;
     }
 

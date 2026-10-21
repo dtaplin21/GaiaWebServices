@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   const scrollToSection = (sectionId: string) => {
-    if (sectionId === "approach" || sectionId === "packages") {
+    if (sectionId === "approach" || sectionId === "packages" || sectionId === "platforms") {
       window.location.href = `/${sectionId}`;
       return;
     }
