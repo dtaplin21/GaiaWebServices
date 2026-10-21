@@ -62,7 +62,7 @@ export default function CustomPlatforms() {
             </h1>
           </div>
           <p className="max-w-xl text-lg leading-8 text-slate-600 lg:justify-self-end">
-            Examples of custom platforms I have designed and directed—from customer-facing interfaces to backend services, data models, automation, and production deployment.
+            Examples of custom platforms we have designed and directed—from customer-facing interfaces to backend services, data models, automation, and production deployment.
           </p>
         </div>
 

@@ -27,7 +27,7 @@ export default function Portfolio() {
             </div>
             <div>
               <p className="text-lg leading-8 text-blue-100">
-                Over the past three years, I have helped more than 10 companies introduce automation into their operations.
+                Over the past three years, we have helped more than 10 companies introduce automation into their operations.
               </p>
               <p className="mt-4 text-sm leading-6 text-blue-200">
                 Experience includes AI strategy consulting, business process automation, workflow optimization, AI implementation, and custom automation systems.
@@ -47,7 +47,7 @@ export default function Portfolio() {
                 Systems designed around your workflow
               </h3>
               <p className="mt-3 max-w-2xl leading-7 text-violet-100">
-                I design connected front-end and back-end systems that integrate with existing business workflows, tools, data, and automation processes.
+                We design connected front-end and back-end systems that integrate with existing business workflows, tools, data, and automation processes.
               </p>
             </article>
 

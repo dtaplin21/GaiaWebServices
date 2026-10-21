@@ -60,7 +60,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!aboutInfo) {
         return res.json({
           id: "",
-          bio: "Hi, I'm a passionate web designer and developer with over 5 years of experience creating beautiful, functional websites that help businesses grow. I specialize in modern web technologies including React, Next.js, and Tailwind CSS.\n\nMy approach combines strategic thinking with creative design to deliver websites that not only look amazing but also convert visitors into customers. I work closely with each client to understand their unique needs and goals.\n\nWhen I'm not coding, you'll find me exploring new design trends, contributing to open-source projects, or enjoying a good cup of coffee while brainstorming the next big idea.",
+          bio: "We are an AI strategy and software development team focused on turning business goals into practical systems. We combine strategic planning, frontend and backend engineering, workflow automation, testing, and deployment to create solutions that teams can adopt and scale with confidence.",
           profileImageUrl: "/src/assets/Dom.jpeg"
         });
       }

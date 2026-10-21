@@ -12,7 +12,7 @@ import {
   UserRound,
 } from "lucide-react";
 import type { AboutInfo } from "@shared/schema";
-import domPortrait from "@/assets/Dom.jpeg";
+import domPortrait from "@/assets/Dom.png";
 
 const technicalSkills = [
   {
@@ -94,10 +94,10 @@ export default function About() {
               Strategy grounded in technical execution.
             </h2>
             <p className="mt-7 text-lg leading-8 text-slate-600">
-              I work at the intersection of business strategy, AI systems, and digital product development. My role is to translate broad AI goals into focused initiatives your team can test, understand, and scale with confidence.
+              We work at the intersection of business strategy, AI systems, and digital product development. Our role is to translate broad AI goals into focused initiatives your team can test, understand, and scale with confidence.
             </p>
             <p className="mt-5 leading-7 text-slate-600">
-              With hands-on experience building web platforms and AI-enabled workflows, I bring both the strategic view and the implementation awareness needed to keep recommendations practical.
+              With hands-on experience building web platforms and AI-enabled workflows, we bring both the strategic view and the implementation awareness needed to keep recommendations practical.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -160,7 +160,7 @@ export default function About() {
             <div className="p-8 lg:p-10">
               <h2 className="text-3xl font-semibold">AI-assisted software orchestration</h2>
               <p className="mt-5 leading-7 text-slate-300">
-                I direct, review, test, and document AI-assisted software development from original concept through production deployment. The process includes identifying bugs, edge cases, and failure modes before implementation into service.
+                We direct, review, test, and document AI-assisted software development from original concept through production deployment. Our process includes identifying bugs, edge cases, and failure modes before implementation into service.
               </p>
 
               <div className="mt-8 space-y-4">

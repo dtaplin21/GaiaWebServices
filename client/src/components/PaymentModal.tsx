@@ -114,7 +114,7 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
     if (numericPageCount > 5) {
       toast({
         title: "Custom Quote Required",
-        description: "For projects with more than 5 pages, please contact me directly for a custom quote.",
+        description: "For projects with more than 5 pages, please contact us directly for a custom quote.",
         variant: "default",
       });
       return;
