@@ -18,7 +18,7 @@ export default function PlatformsPage() {
       return;
     }
 
-    if (sectionId === "packages" || sectionId === "approach") {
+    if (sectionId === "book" || sectionId === "packages" || sectionId === "approach") {
       window.location.href = `/${sectionId}`;
       return;
     }

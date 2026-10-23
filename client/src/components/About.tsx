@@ -61,30 +61,50 @@ export default function About() {
     <section id="credentials" className="bg-stone-50 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-[.85fr_1.15fr]">
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-slate-900">
-              <div className="absolute inset-0 flex items-center justify-center text-slate-600">
-                <UserRound size={120} strokeWidth={1} />
+          <div className="mx-auto w-full max-w-md">
+            <div className="group relative" tabIndex={0} aria-label="Dominique Taplin. Hover to view credentials and production record.">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-slate-900">
+                <div className="absolute inset-0 flex items-center justify-center text-slate-600">
+                  <UserRound size={120} strokeWidth={1} />
+                </div>
+                <img
+                  src={profileImage}
+                  alt="Dominique Taplin, Managing Partner"
+                  className="relative h-full w-full object-cover"
+                  onError={(event) => {
+                    event.currentTarget.style.display = "none";
+                  }}
+                />
+                <div className="absolute bottom-5 right-5 z-10 max-w-[210px] rounded-2xl border border-white/70 bg-white/95 p-4 text-right shadow-xl backdrop-blur transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Role</p>
+                  <p className="mt-1 font-semibold text-slate-900">AI Strategy Consultant</p>
+                </div>
+                <div className="absolute inset-0 z-20 overflow-y-auto bg-cyan-600/80 px-6 py-7 text-white opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-300 text-slate-950">
+                      <Award size={20} />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/80">Credential</p>
+                      <p className="font-semibold">IBM AI Certification</p>
+                    </div>
+                  </div>
+                  <ul className="mt-6 space-y-4 text-sm leading-6 text-white">
+                    <li>Orchestrated more than 6,000,000 lines of source code, reviewed before implementation, with proof in documentation and video recordings of the process.</li>
+                    <li>Identify bugs, edge cases, and failure modes.</li>
+                    <li>Deployed an ecommerce site into production with frontend and backend integration, proven sales, and CI/CD pipelines. Active from 2023 to present: thegrandgaia.com.</li>
+                    <li>Deployed a company frontend with CI/CD pipelines, continuous growth, and active maintenance from 2023 to present: theunnamedfarm.com.</li>
+                    <li>Designed systems with documentation and inference pipelines. Workflows are outlined in documentation using licensed data.</li>
+                    <li>Precise prompt engineering. Systems are based on original concepts, with no implementation copied from a GitHub repository. All code is orchestrated and reviewed by the team.</li>
+                    <li>Stored records showing that the team built and directed the applications and software.</li>
+                    <li>Contracts with companies for beta testing software created with Cursor.</li>
+                  </ul>
+                </div>
               </div>
-              <img
-                src={profileImage}
-                alt="AI strategy consultant portrait"
-                className="relative h-full w-full object-cover"
-                onError={(event) => {
-                  event.currentTarget.style.display = "none";
-                }}
-              />
             </div>
-            <div className="absolute -bottom-6 -right-3 max-w-[260px] rounded-2xl border border-slate-200 bg-white p-5 shadow-xl sm:-right-8">
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white">
-                  <Award size={22} />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Credential</p>
-                  <p className="mt-1 font-semibold text-slate-900">IBM AI Certification</p>
-                </div>
-              </div>
+            <div className="mt-6">
+              <h3 className="text-2xl font-semibold tracking-tight text-slate-950">Dominique Taplin</h3>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Managing Partner</p>
             </div>
           </div>
 

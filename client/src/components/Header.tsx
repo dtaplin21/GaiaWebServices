@@ -45,7 +45,7 @@ export default function Header({ onScrollToSection }: HeaderProps) {
               </button>
             ))}
             <Button
-              onClick={() => navigate("contact")}
+              onClick={() => navigate("book")}
               className="rounded-full bg-cyan-300 px-5 text-slate-950 hover:bg-cyan-200"
             >
               Book a strategy call
@@ -75,7 +75,7 @@ export default function Header({ onScrollToSection }: HeaderProps) {
                   {item.label}
                 </button>
               ))}
-              <Button onClick={() => navigate("contact")} className="w-full rounded-full bg-cyan-300 text-slate-950">
+              <Button onClick={() => navigate("book")} className="w-full rounded-full bg-cyan-300 text-slate-950">
                 Book a strategy call
               </Button>
             </nav>

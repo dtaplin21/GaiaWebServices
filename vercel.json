@@ -10,6 +10,9 @@
     },
     "api/about.js": {
       "includeFiles": "shared/**"
+    },
+    "api/strategy-call.js": {
+      "includeFiles": "shared/**"
     }
   },
   "rewrites": [
@@ -24,6 +27,10 @@
     {
       "source": "/api/about",
       "destination": "/api/about.js"
+    },
+    {
+      "source": "/api/strategy-call",
+      "destination": "/api/strategy-call.js"
     },
     {
       "source": "/(.*)",

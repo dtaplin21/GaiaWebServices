@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertAboutSchema, insertProjectSchema, insertReviewSchema } from "@shared/schema";
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 import Stripe from "stripe";
+import sgMail from "@sendgrid/mail";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -11,6 +12,10 @@ if (process.env.STRIPE_SECRET_KEY) {
   stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: "2025-08-27.basil",
   });
+}
+
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -248,6 +253,46 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     res.json({ received: true });
+  });
+
+  app.post("/api/strategy-call", async (req, res) => {
+    const { name, email, description } = req.body;
+
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof description !== "string" ||
+      name.trim().length < 2 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+      description.trim().length < 10
+    ) {
+      return res.status(400).json({ error: "Please provide valid contact details and a project description." });
+    }
+
+    if (!process.env.SENDGRID_API_KEY || !process.env.SENDGRID_FROM_EMAIL) {
+      return res.status(503).json({ error: "Email service is not configured." });
+    }
+
+    try {
+      await sgMail.send({
+        to: process.env.CONTACT_EMAIL || "Dtaplin21@gmail.com",
+        from: process.env.SENDGRID_FROM_EMAIL,
+        replyTo: email.trim(),
+        subject: `AI strategy call request from ${name.trim()}`,
+        text: [
+          `Name: ${name.trim()}`,
+          `Email: ${email.trim()}`,
+          "",
+          "What they want:",
+          description.trim(),
+        ].join("\n"),
+      });
+
+      return res.status(200).json({ success: true });
+    } catch (error) {
+      console.error("Error sending strategy call request:", error);
+      return res.status(500).json({ error: "Unable to send the request." });
+    }
   });
 
   const httpServer = createServer(app);
