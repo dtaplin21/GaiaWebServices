@@ -61,7 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.json({
           id: "",
           bio: "We are an AI strategy and software development team focused on turning business goals into practical systems. We combine strategic planning, frontend and backend engineering, workflow automation, testing, and deployment to create solutions that teams can adopt and scale with confidence.",
-          profileImageUrl: "/src/assets/Dom.jpeg"
+          profileImageUrl: "/src/assets/Dom.png"
         });
       }
       res.json(aboutInfo);

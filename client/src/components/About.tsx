@@ -53,7 +53,7 @@ export default function About() {
   });
 
   const profileImage =
-    aboutInfo?.profileImageUrl && aboutInfo.profileImageUrl !== "/src/assets/Dom.jpeg"
+    aboutInfo?.profileImageUrl && aboutInfo.profileImageUrl !== "/src/assets/Dom.png"
       ? aboutInfo.profileImageUrl
       : domPortrait;
 
