@@ -17,14 +17,14 @@ export default function Contact() {
 
           <div className="space-y-3">
             <a
-              href="mailto:Dtaplin21@gmail.com?subject=AI%20Strategy%20Consultation"
+              href="mailto:dtaplin21@gmail.com?subject=AI%20Strategy%20Consultation"
               className="flex items-center justify-between rounded-2xl bg-slate-950 p-5 text-white transition-transform hover:-translate-y-1"
             >
               <span className="flex items-center gap-3">
                 <Mail size={19} className="text-cyan-300" />
                 <span>
                   <span className="block text-xs text-slate-400">Email</span>
-                  <span className="font-medium">Dtaplin21@gmail.com</span>
+                  <span className="font-medium">dtaplin21@gmail.com</span>
                 </span>
               </span>
               <ArrowUpRight size={20} />

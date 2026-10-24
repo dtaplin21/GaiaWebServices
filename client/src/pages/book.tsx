@@ -63,10 +63,10 @@ export default function BookPage() {
             </div>
 
             <a
-              href="mailto:Dtaplin21@gmail.com"
+              href="mailto:dtaplin21@gmail.com"
               className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900"
             >
-              <Mail size={17} /> Dtaplin21@gmail.com
+              <Mail size={17} /> dtaplin21@gmail.com
             </a>
           </div>
 

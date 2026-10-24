@@ -33,7 +33,7 @@ export default async function handler(req, res) {
   try {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     await sgMail.send({
-      to: process.env.CONTACT_EMAIL || "Dtaplin21@gmail.com",
+      to: process.env.CONTACT_EMAIL || "dtaplin21@gmail.com",
       from: process.env.SENDGRID_FROM_EMAIL,
       replyTo: email.trim(),
       subject: `AI strategy call request from ${name.trim()}`,
