@@ -34,9 +34,12 @@ export default async function handler(req, res) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     await sgMail.send({
       to: process.env.CONTACT_EMAIL || "dtaplin21@gmail.com",
-      from: process.env.SENDGRID_FROM_EMAIL,
-      replyTo: email.trim(),
-      subject: `AI strategy call request from ${name.trim()}`,
+      from: {
+        email: process.env.SENDGRID_FROM_EMAIL,
+        name: process.env.SENDGRID_FROM_NAME || "Gaia AI Strategy",
+      },
+      replyTo: { email: email.trim(), name: name.trim() },
+      subject: `Strategy request from ${name.trim()}`,
       text: [
         `Name: ${name.trim()}`,
         `Email: ${email.trim()}`,

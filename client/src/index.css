@@ -160,3 +160,152 @@
   transform: scale(1.02);
   transition: all 0.3s ease;
 }
+
+/* ---------- Approach: neon step cards ---------- */
+.neon-card {
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  background: rgb(2 6 23 / 0.85);
+  outline: none;
+  transition: transform 0.35s ease, box-shadow 0.45s ease, background-color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+/* Neon gradient border (masked so only the ring shows) */
+.neon-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(120deg, rgb(var(--neon-a)), rgb(var(--neon-b)), rgb(var(--neon-a)));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.neon-card[data-state="lit"] {
+  border-color: transparent;
+  box-shadow: 0 0 18px -8px rgb(var(--neon-a) / 0.45);
+}
+.neon-card[data-state="lit"]::before {
+  opacity: 0.55;
+}
+
+.neon-card[data-state="active"] {
+  border-color: transparent;
+  background: rgb(15 23 42 / 0.95);
+  transform: translateY(-5px) scale(1.015);
+  box-shadow:
+    0 0 14px 0 rgb(var(--neon-a) / 0.55),
+    0 0 46px -4px rgb(var(--neon-b) / 0.5),
+    inset 0 0 28px -14px rgb(var(--neon-a) / 0.6);
+}
+.neon-card[data-state="active"]::before {
+  opacity: 1;
+  animation: neon-border-shift 2.4s linear infinite;
+}
+
+.neon-num {
+  color: rgb(100 116 139);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.neon-card[data-state="lit"] .neon-num {
+  color: rgb(var(--neon-a));
+}
+.neon-card[data-state="active"] .neon-num {
+  color: rgb(var(--neon-a));
+  text-shadow: 0 0 10px rgb(var(--neon-a) / 0.9);
+}
+
+.neon-icon {
+  background: rgb(255 255 255 / 0.05);
+  color: rgb(148 163 184);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.neon-card[data-state="lit"] .neon-icon {
+  background: rgb(var(--neon-a) / 0.12);
+  color: rgb(var(--neon-a));
+}
+.neon-card[data-state="active"] .neon-icon {
+  background: rgb(var(--neon-a) / 0.22);
+  color: rgb(var(--neon-a));
+  box-shadow: 0 0 18px rgb(var(--neon-a) / 0.7);
+  animation: neon-pulse 1.4s ease-in-out infinite;
+}
+
+.neon-title {
+  color: rgb(203 213 225);
+  transition: color 0.3s ease;
+}
+.neon-desc {
+  color: rgb(100 116 139);
+  transition: color 0.4s ease;
+}
+.neon-card[data-state="lit"] .neon-title {
+  color: #fff;
+}
+.neon-card[data-state="lit"] .neon-desc {
+  color: rgb(148 163 184);
+}
+.neon-card[data-state="active"] .neon-title {
+  color: #fff;
+  text-shadow: 0 0 14px rgb(var(--neon-a) / 0.75);
+}
+.neon-card[data-state="active"] .neon-desc {
+  color: rgb(226 232 240);
+}
+
+/* Interactive words: lift and glow on hover (uses `translate`/`scale` so they
+   do not fight the entrance animations that use `transform`). */
+.neon-word {
+  display: inline-block;
+  transition: translate 0.2s ease, scale 0.2s ease, filter 0.2s ease;
+}
+.neon-word:hover {
+  translate: 0 -3px;
+  scale: 1.1;
+  filter: drop-shadow(0 0 7px rgb(var(--neon-a) / 0.95));
+}
+
+.neon-card[data-state="active"] .neon-title .neon-word {
+  animation: neon-rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 80ms);
+}
+.neon-card[data-state="active"] .neon-desc .neon-word {
+  animation: neon-scan 0.7s ease-out both;
+  animation-delay: calc(var(--i) * 45ms + 300ms);
+}
+
+@keyframes neon-border-shift {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+@keyframes neon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+@keyframes neon-rise {
+  0% { opacity: 0; transform: translateY(16px) rotateX(-50deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes neon-scan {
+  0% { color: rgb(100 116 139); transform: translateY(0); text-shadow: none; }
+  40% { color: #fff; transform: translateY(-3px); text-shadow: 0 0 12px rgb(var(--neon-a) / 0.95); }
+  100% { color: rgb(226 232 240); transform: none; text-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-card,
+  .neon-card::before,
+  .neon-card .neon-word,
+  .neon-card .neon-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+}
