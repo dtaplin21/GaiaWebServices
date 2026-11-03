@@ -256,17 +256,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/strategy-call", async (req, res) => {
-    const { name, email, description } = req.body;
+    const { name, email, address, description, company } = req.body;
+    const companyName = typeof company === "string" ? company.trim() : "";
 
     if (
       typeof name !== "string" ||
       typeof email !== "string" ||
+      typeof address !== "string" ||
       typeof description !== "string" ||
       name.trim().length < 2 ||
+      address.trim().length < 5 ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-      description.trim().length < 10
+      description.trim().length < 10 ||
+      (company !== undefined && typeof company !== "string")
     ) {
-      return res.status(400).json({ error: "Please provide valid contact details and a project description." });
+      return res.status(400).json({ error: "Please provide a name, address, email, and a short description." });
     }
 
     if (!process.env.SENDGRID_API_KEY || !process.env.SENDGRID_FROM_EMAIL) {
@@ -285,6 +289,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         text: [
           `Name: ${name.trim()}`,
           `Email: ${email.trim()}`,
+          `Address: ${address.trim()}`,
+          ...(companyName ? [`Company: ${companyName}`] : []),
           "",
           "What they want:",
           description.trim(),

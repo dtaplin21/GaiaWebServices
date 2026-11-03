@@ -10,7 +10,7 @@ export default function BookPage() {
       return;
     }
 
-    if (sectionId === "platforms" || sectionId === "packages" || sectionId === "approach") {
+    if (sectionId === "platforms" || sectionId === "packages" || sectionId === "approach" || sectionId === "scorecard") {
       window.location.href = `/${sectionId}`;
       return;
     }

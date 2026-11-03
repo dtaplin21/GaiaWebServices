@@ -10,6 +10,7 @@ const navigation = [
   { label: "Custom Platforms", id: "platforms" },
   { label: "Packages", id: "packages" },
   { label: "Approach", id: "approach" },
+  { label: "Scorecard", id: "scorecard" },
 ];
 
 export default function Header({ onScrollToSection }: HeaderProps) {

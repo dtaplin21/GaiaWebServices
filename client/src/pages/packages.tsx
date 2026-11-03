@@ -22,7 +22,7 @@ export default function PackagesPage() {
       return;
     }
 
-    if (sectionId === "approach" || sectionId === "book" || sectionId === "platforms") {
+    if (sectionId === "approach" || sectionId === "book" || sectionId === "platforms" || sectionId === "scorecard") {
       window.location.href = `/${sectionId}`;
       return;
     }

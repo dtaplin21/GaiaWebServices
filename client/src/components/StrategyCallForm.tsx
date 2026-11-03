@@ -10,12 +10,13 @@ const contactEmail = "dtaplin21@gmail.com";
 export default function StrategyCallForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent(
     `AI strategy call request from ${name || "a prospective client"}`,
-  )}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nWhat we need:\n${description}`)}`;
+  )}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nAddress: ${address}\n\nWhat we need:\n${description}`)}`;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,7 +26,7 @@ export default function StrategyCallForm() {
       const response = await fetch("/api/strategy-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, description }),
+        body: JSON.stringify({ name, email, address, description }),
       });
 
       if (!response.ok) {
@@ -35,6 +36,7 @@ export default function StrategyCallForm() {
       setStatus("success");
       setName("");
       setEmail("");
+      setAddress("");
       setDescription("");
     } catch {
       setStatus("error");
@@ -91,6 +93,21 @@ export default function StrategyCallForm() {
             onChange={(event) => setEmail(event.target.value)}
             placeholder="you@company.com"
             autoComplete="email"
+            required
+            className="h-12 rounded-xl"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="strategy-address">Address</Label>
+          <Input
+            id="strategy-address"
+            name="address"
+            value={address}
+            onChange={(event) => setAddress(event.target.value)}
+            placeholder="Street, city, and postal code"
+            autoComplete="street-address"
+            minLength={5}
             required
             className="h-12 rounded-xl"
           />
