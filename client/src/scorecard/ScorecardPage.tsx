@@ -103,7 +103,7 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
       <main className="mx-auto min-h-[calc(100vh-5rem)] max-w-3xl px-5 py-16 lg:px-8 lg:py-24">
         {phase === "intro" && (
           <section>
-            <p className="section-kicker section-kicker-dark">AI readiness scorecard</p>
+            <p className="section-kicker section-kicker-dark">AI capability test</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
               See whether a pilot is the next step.
             </h1>
@@ -120,7 +120,7 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
               onClick={startQuiz}
               className="mt-10 h-12 rounded-full bg-cyan-300 px-7 text-slate-950 hover:bg-cyan-200"
             >
-              Start the scorecard <ArrowRight size={17} />
+              Start the test <ArrowRight size={17} />
             </Button>
           </section>
         )}
@@ -291,7 +291,7 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
             <ScorecardCTA qualified={qualified} discoveryUrl={discoveryUrl} servicesUrl={servicesUrl} />
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
               <button type="button" onClick={retake} className="text-sm text-slate-300 underline underline-offset-4 hover:text-white">
-                Retake the scorecard
+                Retake the test
               </button>
               <a href="/privacy" className="text-sm text-slate-400 underline underline-offset-4 hover:text-white">
                 Privacy

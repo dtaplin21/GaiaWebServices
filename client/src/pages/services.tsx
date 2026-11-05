@@ -78,7 +78,7 @@ export default function ServicesPage() {
           <p className="mt-12 text-slate-600">
             Not sure which offering fits?{" "}
             <a href="/scorecard" className="font-semibold text-blue-700 hover:text-blue-900">
-              Take the scorecard
+              Take the AI capability test
             </a>
             .
           </p>

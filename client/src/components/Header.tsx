@@ -10,7 +10,7 @@ const navigation = [
   { label: "Custom Platforms", id: "platforms" },
   { label: "Packages", id: "packages" },
   { label: "Approach", id: "approach" },
-  { label: "Scorecard", id: "scorecard" },
+  { label: "AI Capability Test", id: "scorecard" },
 ];
 
 export default function Header({ onScrollToSection }: HeaderProps) {
@@ -35,7 +35,7 @@ export default function Header({ onScrollToSection }: HeaderProps) {
             </div>
           </button>
           
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {navigation.map((item) => (
               <button
                 key={item.id}
@@ -56,7 +56,7 @@ export default function Header({ onScrollToSection }: HeaderProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="text-white hover:bg-white/10 hover:text-white md:hidden"
+            className="text-white hover:bg-white/10 hover:text-white lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle navigation"
           >
@@ -65,7 +65,7 @@ export default function Header({ onScrollToSection }: HeaderProps) {
         </div>
         
         {isMobileMenuOpen && (
-          <div className="border-t border-white/10 py-5 md:hidden">
+          <div className="border-t border-white/10 py-5 lg:hidden">
             <nav className="flex flex-col gap-4">
               {navigation.map((item) => (
                 <button
