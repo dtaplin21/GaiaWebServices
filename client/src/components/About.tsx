@@ -168,7 +168,7 @@ export default function About() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">
                 Coding agent experience
               </p>
-              <p className="mt-10 text-6xl font-semibold tracking-tight">600,000+</p>
+              <p className="mt-10 text-6xl font-semibold tracking-tight">6,000,000</p>
               <p className="mt-3 text-lg text-blue-100">lines of source code orchestrated and reviewed</p>
               <div className="mt-10 border-t border-white/20 pt-6">
                 <p className="font-semibold">Prompt Engineering</p>
