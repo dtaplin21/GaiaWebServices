@@ -1,11 +1,14 @@
 import {
+  AlertTriangle,
   ArrowUpRight,
   Bot,
   Database,
+  Lightbulb,
   LayoutDashboard,
   ServerCog,
   ShoppingBag,
   Sprout,
+  TrendingUp,
 } from "lucide-react";
 
 const platforms = [
@@ -42,6 +45,12 @@ const platforms = [
       "A custom quality-control and quality-assurance platform that connects an operational dashboard with AI-assisted testing and monitoring workflows.",
     frontend: "Data-rich dashboards, quality-control interfaces, workflow status views, and real-time operational feedback.",
     backend: "AI inference pipelines, automation logic, data services, testing workflows, and system integrations.",
+    caseStudy: {
+      problem: "Inspection data and construction drawings required substantial manual comparison.",
+      solution:
+        "Designed an AI-assisted system capable of aligning inspection drawings with master drawings and identifying differences.",
+      impact: "Faster inspection review, centralized evidence, and reduced manual drawing comparison.",
+    },
     technologies: ["AI Automation", "Python", "TensorFlow", "React", "Node.js"],
     url: "https://dellsystemmanager.vercel.app/",
     icon: Bot,
@@ -90,18 +99,38 @@ export default function CustomPlatforms() {
                 <div className="p-8 lg:p-10">
                   <p className="text-lg leading-8 text-slate-600">{platform.description}</p>
 
-                  <div className="mt-8 grid gap-5 sm:grid-cols-2">
-                    <div className="rounded-2xl bg-blue-50 p-5">
-                      <LayoutDashboard className="text-blue-700" size={22} />
-                      <h3 className="mt-4 font-semibold text-slate-950">Frontend development</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-600">{platform.frontend}</p>
+                  {platform.caseStudy ? (
+                    <div className="mt-8 grid gap-5 md:grid-cols-3">
+                      <div className="rounded-2xl bg-rose-50 p-5">
+                        <AlertTriangle className="text-rose-600" size={22} />
+                        <h3 className="mt-4 font-semibold text-slate-950">Problem</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{platform.caseStudy.problem}</p>
+                      </div>
+                      <div className="rounded-2xl bg-violet-50 p-5">
+                        <Lightbulb className="text-violet-700" size={22} />
+                        <h3 className="mt-4 font-semibold text-slate-950">Solution</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{platform.caseStudy.solution}</p>
+                      </div>
+                      <div className="rounded-2xl bg-emerald-50 p-5">
+                        <TrendingUp className="text-emerald-700" size={22} />
+                        <h3 className="mt-4 font-semibold text-slate-950">Business impact</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{platform.caseStudy.impact}</p>
+                      </div>
                     </div>
-                    <div className="rounded-2xl bg-violet-50 p-5">
-                      <ServerCog className="text-violet-700" size={22} />
-                      <h3 className="mt-4 font-semibold text-slate-950">Backend development</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-600">{platform.backend}</p>
+                  ) : (
+                    <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                      <div className="rounded-2xl bg-blue-50 p-5">
+                        <LayoutDashboard className="text-blue-700" size={22} />
+                        <h3 className="mt-4 font-semibold text-slate-950">Frontend development</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{platform.frontend}</p>
+                      </div>
+                      <div className="rounded-2xl bg-violet-50 p-5">
+                        <ServerCog className="text-violet-700" size={22} />
+                        <h3 className="mt-4 font-semibold text-slate-950">Backend development</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{platform.backend}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <div className="mt-7 flex flex-wrap items-center justify-between gap-5">
                     <div className="flex flex-wrap gap-2">

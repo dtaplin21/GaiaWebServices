@@ -17,15 +17,20 @@ export default function Hero({ onScrollToSection }: HeroProps) {
           <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
             AI Strategy Consulting Team
           </div>
+<<<<<<< Updated upstream
           <h1 className="max-w-4xl text-3xl font-semibold leading-[1.05] tracking-tight sm:text-5xl xl:text-6xl">
             Simplify Operations.
             <br />
             Strengthen Performance.
             <br />
             Scale With Confidence.
+=======
+          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            Find where your company is losing time — then automate it.
+>>>>>>> Stashed changes
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            We help organizations identify the right AI opportunities, validate them with practical pilots, and build a measurable path from strategy to deployment.
+            We help organizations identify repetitive workflows, inefficient processes, and opportunities where AI and automation can reduce manual work, improve decision-making, and increase productivity.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Button
