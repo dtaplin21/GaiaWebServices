@@ -33,7 +33,7 @@ export const pages = [
     title: "Gaia AI Strategy | AI Strategy Consulting & Workflow Automation",
     description:
       "AI strategy consulting team. We find where your company is losing time, then automate it: workflow audits, AI pilots, custom front-end and back-end systems, deployment planning, and ROI tracking.",
-    h1: "Find where your company is losing time — then automate it.",
+    h1: "Simplify Operations. Strengthen Performance. Scale With Confidence.",
     intro:
       "We help organizations identify repetitive workflows, inefficient processes, and opportunities where AI and automation can reduce manual work, improve decision-making, and increase productivity.",
     blocks: [
