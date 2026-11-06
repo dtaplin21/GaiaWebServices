@@ -292,6 +292,94 @@ export const pages = [
     ],
   },
   {
+    path: "/services",
+    file: "services.html",
+    navLabel: "Services",
+    title: "AI Services: Opportunity Assessment, Workflow Automation & Strategy | Gaia AI Strategy",
+    description:
+      "Practical help from the first opportunity to a working system: AI opportunity assessment, workflow automation and implementation, and AI strategy and advisory.",
+    h1: "Practical help from the first opportunity to a working system.",
+    intro:
+      "Grand Gaia helps organizations find the work worth improving, automate a real workflow, and decide what to do next.",
+    blocks: [
+      {
+        h2: "Services",
+        items: [
+          {
+            title: "AI Opportunity Assessment",
+            text: "Identify operational inefficiencies, automation opportunities, and the improvements most likely to matter to the business. Next step: schedule a discovery call at " + SITE.url + "/book.",
+          },
+          {
+            title: "Workflow Automation & Implementation",
+            text: "Design and build a solution for a repetitive workflow so the team spends less time on handoffs, rework, and manual updates. Next step: talk through a workflow at " + SITE.url + "/book.",
+          },
+          {
+            title: "AI Strategy & Advisory",
+            text: "Help the company choose technologies, set an implementation order, and give internal teams a plan they can follow. Next step: request a consultation at " + SITE.url + "/book.",
+          },
+        ],
+      },
+      {
+        h2: "Not sure which offering fits?",
+        paragraphs: [`Take the AI capability test at ${SITE.url}/scorecard.`],
+      },
+    ],
+  },
+  {
+    path: "/scorecard",
+    file: "scorecard.html",
+    navLabel: "AI Capability Test",
+    title: "AI Capability Test: Is a Pilot Your Next Step? | Gaia AI Strategy",
+    description:
+      "A free five-minute, 22-question AI capability test. Get a readiness score from 0 to 10, a written diagnosis, and the three areas to work on first. Answers stay in your browser.",
+    h1: "See whether a pilot is the next step.",
+    intro:
+      "Twenty-two questions about how the business runs today. Company details and diagnostic answers stay out of the score. The result is a readiness number from 0 to 10 and the three areas to work on first.",
+    blocks: [
+      {
+        h2: "How the test works",
+        list: [
+          "About five minutes.",
+          "No account. Answers stay in this browser.",
+          "You get a score out of 10 and a written diagnosis from your answers.",
+          "Depending on the result, the next step is a discovery call or an overview of our services.",
+        ],
+      },
+      {
+        h2: "What the test measures",
+        items: [
+          { title: "Systems", text: "Whether the tools and CRM are clear enough to build on." },
+          { title: "Operations", text: "How much of the week still goes to repetitive work." },
+          { title: "Pipeline", text: "How leads are created, answered, and tracked." },
+          { title: "Customers", text: "How satisfaction and retention are measured." },
+          { title: "Decisions", text: "Whether choices are made from shared numbers." },
+          { title: "AI and automation", text: "What you have already tried, and whether there is a plan." },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/privacy",
+    file: "privacy.html",
+    priority: "0.3",
+    navLabel: "Privacy",
+    title: "Privacy | Gaia AI Strategy",
+    description:
+      "What this site keeps: the AI capability test runs in your browser, the strategy call form emails our team, and no account is required.",
+    h1: "What this site keeps.",
+    intro: "",
+    blocks: [
+      {
+        h2: "Privacy summary",
+        paragraphs: [
+          "The AI capability test runs in your browser. Your answers are used to calculate the result on this device and are not sent to a server.",
+          "The strategy call form opens an email to our team with the name, email address, and description you enter. We use that message to reply to your request.",
+          "The site does not ask you to create an account.",
+        ],
+      },
+    ],
+  },
+  {
     path: "/book",
     file: "book.html",
     navLabel: "Book a strategy call",

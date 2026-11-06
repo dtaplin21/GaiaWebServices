@@ -128,7 +128,7 @@ function renderBody(page) {
   return (
     `<div data-prerendered="true" style="max-width:52rem;margin:0 auto;padding:2rem 1.25rem;font-family:system-ui,sans-serif;line-height:1.6;color:#0f172a">` +
     `<header><p><strong>${esc(SITE.name)}</strong> — ${esc(SITE.tagline)}</p><nav aria-label="Primary">${nav}</nav></header>` +
-    `<main><h1>${esc(page.h1)}</h1><p>${esc(page.intro)}</p>${page.blocks.map(renderBlock).join("")}</main>` +
+    `<main><h1>${esc(page.h1)}</h1>${page.intro ? `<p>${esc(page.intro)}</p>` : ""}${page.blocks.map(renderBlock).join("")}</main>` +
     `<footer><p>${esc(SITE.name)} · <a href="mailto:${SITE.email}">${SITE.email}</a> · <a href="tel:${SITE.phone}">${SITE.phoneDisplay}</a></p>` +
     `<p><a href="/llms.txt">llms.txt</a> · <a href="/llms-full.txt">llms-full.txt</a> · <a href="/sitemap.xml">sitemap.xml</a></p></footer>` +
     `</div>`
@@ -215,7 +215,7 @@ function buildSitemap() {
   const urls = pages
     .map(
       (p) =>
-        `  <url>\n    <loc>${abs(p.path)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${p.path === "/" ? "1.0" : "0.8"}</priority>\n  </url>`,
+        `  <url>\n    <loc>${abs(p.path)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${p.priority || (p.path === "/" ? "1.0" : "0.8")}</priority>\n  </url>`,
     )
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;

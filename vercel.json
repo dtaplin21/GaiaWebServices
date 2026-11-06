@@ -4,7 +4,6 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": null,
-  "cleanUrls": true,
   "functions": {
     "api/projects.js": {
       "includeFiles": "shared/**"
@@ -32,6 +31,34 @@
     {
       "source": "/api/strategy-call",
       "destination": "/api/strategy-call.js"
+    },
+    {
+      "source": "/approach",
+      "destination": "/approach.html"
+    },
+    {
+      "source": "/packages",
+      "destination": "/packages.html"
+    },
+    {
+      "source": "/platforms",
+      "destination": "/platforms.html"
+    },
+    {
+      "source": "/book",
+      "destination": "/book.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/services.html"
+    },
+    {
+      "source": "/scorecard",
+      "destination": "/scorecard.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
     },
     {
       "source": "/(.*)",
