@@ -331,7 +331,7 @@ export const pages = [
     navLabel: "AI Capability Test",
     title: "AI Capability Test: Is a Pilot Your Next Step? | Gaia AI Strategy",
     description:
-      "A free five-minute, 22-question AI capability test. Get a readiness score from 0 to 10, a written diagnosis, and the three areas to work on first. Answers stay in your browser.",
+      "A free five-minute, 22-question AI capability test. Get a readiness score from 0 to 10, a written diagnosis, and the three areas to work on first, emailed to you.",
     h1: "See whether a pilot is the next step.",
     intro:
       "Twenty-two questions about how the business runs today. Company details and diagnostic answers stay out of the score. The result is a readiness number from 0 to 10 and the three areas to work on first.",
@@ -340,8 +340,8 @@ export const pages = [
         h2: "How the test works",
         list: [
           "About five minutes.",
-          "No account. Answers stay in this browser.",
-          "You get a score out of 10 and a written diagnosis from your answers.",
+          "No account. Enter your email at the end to see your results.",
+          "You get a score out of 10 and a written diagnosis from your answers, and we email you a copy.",
           "Depending on the result, the next step is a discovery call or an overview of our services.",
         ],
       },
@@ -365,14 +365,14 @@ export const pages = [
     navLabel: "Privacy",
     title: "Privacy | Gaia AI Strategy",
     description:
-      "What this site keeps: the AI capability test runs in your browser, the strategy call form emails our team, and no account is required.",
+      "What this site keeps: the AI capability test emails your results to you and to our team, the strategy call form emails our team, and no account is required.",
     h1: "What this site keeps.",
     intro: "",
     blocks: [
       {
         h2: "Privacy summary",
         paragraphs: [
-          "The AI capability test runs in your browser. Your answers are used to calculate the result on this device and are not sent to a server.",
+          "The AI capability test runs in your browser while you answer. When you enter your email to see your results, we send your answers, your score, and your email address to our team, and we email a copy of your results to you. We use that information to follow up with you about your results.",
           "The strategy call form opens an email to our team with the name, email address, and description you enter. We use that message to reply to your request.",
           "The site does not ask you to create an account.",
         ],

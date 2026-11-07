@@ -1,6 +1,7 @@
 export type ScorecardEventName =
   | "scorecard_started"
   | "scorecard_completed"
+  | "scorecard_email_submitted"
   | "scorecard_results_viewed"
   | "discovery_cta_clicked"
   | "services_cta_clicked"

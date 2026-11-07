@@ -33,6 +33,10 @@
       "destination": "/api/strategy-call.js"
     },
     {
+      "source": "/api/scorecard-results",
+      "destination": "/api/scorecard-results.js"
+    },
+    {
       "source": "/approach",
       "destination": "/approach.html"
     },

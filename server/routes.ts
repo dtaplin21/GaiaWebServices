@@ -5,6 +5,7 @@ import { insertAboutSchema, insertProjectSchema, insertReviewSchema } from "@sha
 import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 import Stripe from "stripe";
 import sgMail from "@sendgrid/mail";
+import { handleScorecardSubmission } from "./scorecardMail";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -253,6 +254,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     res.json({ received: true });
+  });
+
+  app.post("/api/scorecard-results", async (req, res) => {
+    try {
+      const result = await handleScorecardSubmission(req.body, req.ip ?? "");
+      return res.status(result.status).json(result.body);
+    } catch (error) {
+      console.error("Scorecard submission error:", error);
+      return res.status(500).json({ error: "Unable to send your results." });
+    }
   });
 
   app.post("/api/strategy-call", async (req, res) => {

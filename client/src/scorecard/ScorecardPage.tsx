@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/button";
 import { trackScorecardEvent } from "./analytics";
 import { dimensions, isAnswerComplete, questions, type AnswerValue } from "./questions";
 import { ScorecardCTA } from "./ScorecardCTA";
+import { ScorecardGate, type GateResult } from "./ScorecardGate";
 import { formatScore, profileAnswers, scoreAnswers, type Answers } from "./scoring";
 import "./scorecard.css";
 
-type Phase = "intro" | "quiz" | "results";
+type Phase = "intro" | "quiz" | "gate" | "results";
 
 type ScorecardPageProps = {
   discoveryUrl: string;
@@ -22,6 +23,7 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
   const [phase, setPhase] = useState<Phase>("intro");
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
+  const [delivery, setDelivery] = useState<GateResult | null>(null);
   const started = useRef(false);
   const finished = useRef(false);
 
@@ -79,19 +81,27 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
       if (!finished.current) {
         finished.current = true;
         trackScorecardEvent("scorecard_completed");
-        trackScorecardEvent("scorecard_results_viewed", { qualified });
       }
-      setPhase("results");
+      setPhase("gate");
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     setIndex((current) => current + 1);
   };
 
+  const unlockResults = (outcome: GateResult) => {
+    setDelivery(outcome);
+    trackScorecardEvent("scorecard_email_submitted", { qualified });
+    trackScorecardEvent("scorecard_results_viewed", { qualified });
+    setPhase("results");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const retake = () => {
     started.current = false;
     finished.current = false;
     setAnswers({});
+    setDelivery(null);
     setIndex(0);
     setPhase("intro");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -112,8 +122,8 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
             </p>
             <ul className="mt-8 space-y-3 text-slate-300">
               <li>About five minutes.</li>
-              <li>No account. Answers stay in this browser.</li>
-              <li>You get a score out of 10 and a written diagnosis from your answers.</li>
+              <li>No account. Enter your email at the end to see your results.</li>
+              <li>You get a score out of 10 and a written diagnosis from your answers, and we email you a copy.</li>
             </ul>
             <Button
               size="lg"
@@ -224,9 +234,24 @@ export function ScorecardPage({ discoveryUrl, servicesUrl }: ScorecardPageProps)
           </section>
         )}
 
+        {phase === "gate" && (
+          <ScorecardGate
+            answers={answers}
+            onBack={() => setPhase("quiz")}
+            onUnlocked={unlockResults}
+          />
+        )}
+
         {phase === "results" && (
           <section>
             <p className="section-kicker section-kicker-dark">Your readiness</p>
+            {delivery && (
+              <p className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm text-cyan-100">
+                {delivery.emailedToUser
+                  ? `We've emailed a copy of these results to ${delivery.email}. Check your spam folder if it doesn't arrive in a few minutes.`
+                  : "We couldn't email you a copy, but your results are below and our team has received them."}
+              </p>
+            )}
             <div className="mt-8 flex flex-col items-start gap-8 sm:flex-row sm:items-center">
               <div className="score-ring" style={{ "--score": result.score * 10 } as CSSProperties}>
                 <div className="score-ring-inner">

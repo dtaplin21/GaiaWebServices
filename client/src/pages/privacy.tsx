@@ -28,7 +28,7 @@ export default function PrivacyPage() {
         </h1>
         <div className="mt-8 space-y-6 text-lg leading-8 text-slate-600">
           <p>
-            The AI capability test runs in your browser. Your answers are used to calculate the result on this device and are not sent to a server.
+            The AI capability test runs in your browser while you answer. When you enter your email to see your results, we send your answers, your score, and your email address to our team, and we email a copy of your results to you. We use that information to follow up with you about your results.
           </p>
           <p>
             The strategy call form opens an email to our team with the name, email address, and description you enter. We use that message to reply to your request.
